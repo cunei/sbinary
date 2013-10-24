@@ -27,8 +27,8 @@ object SBinaryProject extends Build
 		name := "SBinary",
 		scalaCheck,
 		libraryDependencies ++= Seq("org.scala-lang.modules" %% "scala-xml" % "1.0-RC2",
-			"org.scala-lang.modules" %% "scala-interactive" % "1.0.0-RC1",
-			"org.scala-lang.modules" %% "scaladoc" % "1.0.0-RC1"),
+			"org.scala-lang.modules" %% "scala-interactive" % "1.0.0-RC1" % "scala-tool,
+			"org.scala-lang.modules" %% "scaladoc" % "1.0.0-RC1" % "scala-tool),
 		unmanagedResources in Compile <+= baseDirectory map { _ / "LICENSE" }
 	)
 	def aux(nameString: String) = commonSettings ++ Seq( publish := (), name := nameString )
