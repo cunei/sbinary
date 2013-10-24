@@ -10,7 +10,8 @@ object SBinaryProject extends Build
 	lazy val commonSettings: Seq[Setting[_]] = Seq(
 		organization := "org.scala-tools.sbinary",
 		version := "0.4.2",
-		scalaVersion := "2.11.0-M4",
+		scalaVersion := "2.11.0-M5",
+		scalaBinaryVersion := "2.11.0-M5",
 		crossVersion := CrossVersion.full,
 		includeTestDependencies <<= scalaVersion(_.startsWith("2.10."))
 	)
@@ -25,17 +26,13 @@ object SBinaryProject extends Build
 	lazy val coreSettings = commonSettings ++ template ++ Seq(
 		name := "SBinary",
 		scalaCheck,
-		libraryDependencies <++= scalaVersion(scalaXmlDep),
+		libraryDependencies ++= Seq("org.scala-lang.modules" %% "scala-xml" % "1.0-RC2",
+			"org.scala-lang.modules" %% "scala-interactive" % "1.0.0-RC1",
+			"org.scala-lang.modules" %% "scaladoc" % "1.0.0-RC1"),
 		unmanagedResources in Compile <+= baseDirectory map { _ / "LICENSE" }
 	)
 	def aux(nameString: String) = commonSettings ++ Seq( publish := (), name := nameString )
 
-	def scalaXmlDep(scalaV: String): List[ModuleID] =
-		if(scalaV.startsWith("2.11.")) List(
-			"org.scala-lang.modules" %% "scala-xml" % "1.0-RC2",
-			"org.scala-lang.modules" %% "scala-interactive" % "1.0.0-RC1",
-			"org.scala-lang.modules" %% "scaladoc" % "1.0.0-RC1"
-		) else Nil
 
 	/*** Templating **/
 
