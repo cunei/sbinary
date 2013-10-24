@@ -34,7 +34,7 @@ object SBinaryProject extends Build
 		if(scalaV.startsWith("2.11.")) List(
 			"org.scala-lang.modules" %% "scala-xml" % "1.0-RC2",
 			"org.scala-lang.modules" %% "scala-interactive" % "1.0.0-RC1",
-			"org.scala-lang.modules" %% "scaladoc" % "1.0.0-RC1",
+			"org.scala-lang.modules" %% "scaladoc" % "1.0.0-RC1"
 		) else Nil
 
 	/*** Templating **/
